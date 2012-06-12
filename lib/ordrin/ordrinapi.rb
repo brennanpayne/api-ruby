@@ -34,3 +34,4 @@ class OrdrinApi
     end
     result
   end
+end

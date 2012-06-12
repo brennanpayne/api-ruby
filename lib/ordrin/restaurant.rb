@@ -25,3 +25,4 @@ class RestaurantApi < OrdrinApi
     restaurant_id = normalize(restaurant_id, :number)
     return call_api(:get, ['rd', restaurant_id])
   end
+end
