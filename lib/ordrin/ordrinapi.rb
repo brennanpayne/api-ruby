@@ -6,7 +6,7 @@ require 'uri'
 class OrdrinApi
   def initialize(key, base_url)
     @key = key
-    @base_url = Normalize.normalize(base_url, :url)
+    @base_url = normalize(base_url, :url)
   end
 
   protected
