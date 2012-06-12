@@ -50,7 +50,7 @@ class UserApi < OrdrinApi
   def set_credit_card(login, card_nick, credit_card)
     card_nick = normalize(card_nick, :nick)
     data = credit_card.make_dict
-    data.merge(login.make_dict)
+    data.merge!(login.make_dict)
     data['nick'] = card_nick
     return call_api(:put, ['u', login.email, 'ccs', card_nick], login, data)
   end
