@@ -8,7 +8,7 @@ class OrderApi < OrdrinApi
 
   def build_dict(restaurant_id, tray, tip, delivery_date_time, first_name, last_name, address, credit_card, email, login=nil)
     data = {'restaurant_id' => normalize(restaurant_id, :number),
-      'tray' => tray.to_str,
+      'tray' => tray.to_s,
       'tip' => normalize(tip, :money),
       'delivery_date' => normalize(delivery_date_time, :date)}
     if data['delivery_date'] != 'ASAP'

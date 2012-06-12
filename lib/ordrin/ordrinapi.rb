@@ -2,6 +2,7 @@ require 'normalize'
 require 'net/http'
 require 'json'
 require 'uri'
+require 'digest'
 
 class OrdrinApi
   def initialize(key, base_url)
