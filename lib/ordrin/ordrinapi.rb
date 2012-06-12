@@ -5,6 +5,9 @@ require 'uri'
 require 'digest'
 
 class OrdrinApi
+
+  attr_reader :base_url
+  
   def initialize(key, base_url)
     @key = key
     @base_url = normalize(base_url, :url)

@@ -38,4 +38,10 @@ class APIs
       @order = OrderApi(api_key, order_url)
     end
   end
+
+  def config
+    return {"API key" => api_key,
+      "Restaurant URL" => @restaurant.base_url,
+      "User URL" => @user.base_url,
+      "Order URL" => @order.base_url}
 end
