@@ -16,8 +16,8 @@ class Address < OrdrinData
   
   def initialize(addr, city, state, zip, phone, addr2='')
     @addr = addr
-    @city = city
-    @state = state
+    @city = normalize(city, :city)
+    @state = normalize(state, :state)
     @zip = normalize(zip, :zip)
     @phone = normalize(phone, :phone)
   end
