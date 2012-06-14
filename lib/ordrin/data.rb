@@ -5,36 +5,36 @@ module Ordrin
     class OrdrinData
       def make_dict
         dict = {}
-        fields.map {|f| dict[f.to_s]=self.send(f)}
+        fields.map {|f| dict[f.to_s]=self.send(f) unless self.send(f).nil?}
         return dict
       end
     end
 
     class Address < OrdrinData
-      @fields = [:addr, :city, :state, :zip, :phone, :addr2]
 
-      attr_reader :addr, :city, :state, :zip, :phone, :addr2
+      attr_reader :addr, :city, :state, :zip, :phone, :addr2, :fields
       
       def initialize(addr, city, state, zip, phone, addr2='')
+        @fields = [:addr, :city, :state, :zip, :phone, :addr2]
         @addr = addr
-        @city = normalize(city, :city)
-        @state = normalize(state, :state)
-        @zip = normalize(zip, :zip)
-        @phone = normalize(phone, :phone)
+        @city = city
+        @state = Normalize.normalize(state, :state)
+        @zip = Normalize.normalize(zip, :zip)
+        @phone = Normalize.normalize(phone, :phone)
       end
     end
 
     class CreditCard < OrdrinData
-      @fields = [:number, :cvc, :expiry_month, :expiry_year, :expiry,
-                 :bill_addr, :bill_addr2, :bill_city, :bill_state, :bill_zip,
-                 :phone, :name]
 
-      attr_reader :expiry_month, :expiry_year, :number, :cvc, :type, :name, :bill_address
+      attr_reader :expiry_month, :expiry_year, :number, :cvc, :type, :name, :bill_address, :fields
 
       def initialize(name, expiry_month, expiry_year, bill_address, number, cvc)
-        @expiry_month = normalize(expiry_month, :month)
-        @expiry_year = normalize(expiry_year, :year)
-        @number, @cvc, @type = normalize([number, cvc], :credit_card)
+        @fields = [:number, :cvc, :expiry_month, :expiry_year, :expiry,
+                   :bill_addr, :bill_addr2, :bill_city, :bill_state, :bill_zip,
+                   :phone, :name]
+        @expiry_month = Normalize.normalize(expiry_month, :month)
+        @expiry_year = Normalize.normalize(expiry_year, :year)
+        @number, @cvc, @type = Normalize.normalize([number, cvc], :credit_card)
         @name = name
         @bill_address = bill_address
       end
@@ -70,9 +70,10 @@ module Ordrin
 
     class UserLogin < OrdrinData
       
-      fields = [:email, :password]
+      attr_reader :email, :password, :fields
 
       def initialize(email, password)
+        @fields = [:email, :password]
         @email = email
         @password = UserLogin.hash_password(password)
       end
@@ -85,13 +86,13 @@ module Ordrin
     class TrayItem
       
       def initialize(item_id, quantity, *options)
-        @item_id = normalize(item_id, :number)
-        @quantity = normalize(quantity, :number)
-        @options = options.map {|opt| normalize(opt, :number)}
+        @item_id = Normalize.normalize(item_id, :number)
+        @quantity = Normalize.normalize(quantity, :number)
+        @options = options.map {|opt| Normalize.normalize(opt, :number)}
       end
 
       def to_s
-        "#{@item_id}/#{@quantity},#{options*','}"
+        "#{@item_id}/#{@quantity},#{@options*','}"
       end
     end
 
@@ -102,7 +103,7 @@ module Ordrin
       end
 
       def to_s
-        return items*'+'
+        return @items*'+'
       end
     end
   end

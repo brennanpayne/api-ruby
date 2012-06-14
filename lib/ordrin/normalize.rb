@@ -1,7 +1,7 @@
 require_relative 'errors'
 
 module Ordrin
-  module Normalizers
+  module Normalize
     class Normalizers
       private
       def regex(regex, error)
@@ -20,14 +20,14 @@ module Ordrin
         phone = phone_number.to_s.gsub(/\D/, '')
         if phone.length == 10
           phone[/^(\d{3})(\d{3})(\d{4})$/]
-          "{$1}-{$2}-{$3}"
+          "#{$1}-#{$2}-#{$3}"
         else
           raise Errors.phone[phone_number]
         end
       end
 
       def money(money)
-        value = money.to_s.gsub(/,/, '')[/^\$(\d+(\.\d+)?)$/, 1]
+        value = money.to_s.gsub(/,/, '')[/^\$?(\d+(\.\d+)?)$/, 1]
         if value.nil?
           raise Errors.money[money]
         else
@@ -72,15 +72,15 @@ module Ordrin
       end
 
       def url(url)
-        value.to_s[/^(https?:\/\/)[-\w.~]+(:\d+)?(\/[-\w.~]+)*/]
+        url.to_s[/^(https?:\/\/)[-\w.~]+(:\d+)?(\/[-\w.~]+)*/]
       end
 
       def state(state)
-        value = state.to_s[/^[A-Za-z]{2}$/]
-        if value.nil?
+        state = state.to_s[/^[A-Za-z]{2}$/]
+        if state.nil?
           raise Errors.state[state]
         else
-          value.upcase
+          state.upcase
         end
       end
 
@@ -97,7 +97,7 @@ module Ordrin
       end
 
       def luhn_checksum(card_number)
-        digits = card_number.to_s.scan(/./).each {|c| c.to_i}
+        digits = card_number.to_s.scan(/./).map(&:to_i)
         checksum = 0
         digits.each_index do |index|
           digit = digits[index]
@@ -130,7 +130,7 @@ module Ordrin
           else
             cvc_length = 3
           end
-          if cvc.length == cvc_length and !cvc.to_s[/^\d+$/]
+          if cvc.length == cvc_length and !cvc.to_s[/^\d+$/].nil?
             [num, cvc, card_type]
           else
             raise Errors.cvc[cvc]
@@ -140,6 +140,10 @@ module Ordrin
 
       def unchecked(value)
         value.to_s
+      end
+
+      def name(value)
+        unchecked(value)
       end
 
       def zip(zip)
@@ -171,10 +175,11 @@ module Ordrin
       end
     end
 
-    normalizers = Normalizers.new
+    @@normalizer = Normalizers.new
 
-    def normalize(value, normalizer)
-      normalizer.send(normalizer, value)
+    public
+    def Normalize.normalize(value, normalizer)
+      @@normalizer.send(normalizer, value)
     end
   end
 end

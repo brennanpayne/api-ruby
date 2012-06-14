@@ -27,13 +27,13 @@ module Ordrin
         raise ArgumentError.new("servers must be set to :production, :test, or :custom")
       end
       unless restaurant_url.nil?
-        @restaurant = RestaurantApi(api_key, restaurant_url)
+        @restaurant = RestaurantApi.new(api_key, restaurant_url)
       end
       unless user_url.nil?
-        @user = UserApi(api_key, user_url)
+        @user = UserApi.new(api_key, user_url)
       end
       unless order_url.nil?
-        @order = OrderApi(api_key, order_url)
+        @order = OrderApi.new(api_key, order_url)
       end
     end
 

@@ -26,119 +26,118 @@ module Ordrin
       end
     end
 
-    def state
+    def Errors.state
       lambda do |value|
         ArgumentError.new("State must be a two letter postal code abbreviation: #{value}")
       end
     end
 
-    def money
+    def Errors.money
       lambda do |value|
         ArgumentError.new("Money must be dollars.cents: #{value}")
       end
     end
 
-    def zip
+    def Errors.zip
       lambda do |value|
         ArgumentError.new("Zip code must be exactly 5 digits: #{value}")
       end
     end
 
-    def phone
+    def Errors.phone
       lambda do |value|
         ArgumentError.new("Phone numbers must have exactly 10 digits: #{value}")
       end
     end
 
-    def number
+    def Errors.number
       lambda do |value|
         ArgumentError.new("This value must be only digits: #{value}")
       end
     end
 
-    def month
+    def Errors.month
       lambda do |value|
         ArgumentError.new("Months must be two digits: #{value}")
       end
     end
 
-    def year
+    def Errors.year
       lambda do |value|
         ArgumentError.new("Years must be four digits: #{value}")
       end
     end
 
-    def cvc
+    def Errors.cvc
       lambda do |value|
         ArgumentError.new("Credit card CVC must be 3 or 4 digits, depending on the card type: #{value}")
       end
     end
 
-    def credit_card
+    def Errors.credit_card
       lambda do |value|
         ArgumentError.new("Credit card number must be a valid AmEx, Discover, Mastercard, or Visa card number: #{value}")
       end
     end
 
-    def email
+    def Errors.email
       lambda do |value|
         ArgumentError.new("Bad email format: #{value}")
       end
     end
 
-    def normalizer
+    def Errors.normalizer
       lambda do |value|
         ArgumentError.new("Unknown validator name: #{value}")
       end
     end
 
-    def nick
+    def Errors.nick
       lambda do |value|
         ArgumentError.new("Nick names can only have letters, nubmers, dashes, and underscores: #{value}")
       end
     end
 
-    def date_time
+    def Errors.date_time
       lambda do |value|
         ArgumentError.new("date_time must be a datetime.datetime object or the string 'ASAP': #{value}")
       end
     end
 
-    def date
+    def Errors.date
       lambda do |value|
         ArgumentError.new("date must be a datetime.datetime or datetime.date object or the string 'ASAP': #{value}")
       end
     end
 
-    def time
+    def Errors.time
       lambda do |value|
         ArgumentError.new("time must be a datetime.datetime or datetime.time object: #{value}")
       end
     end
 
-    def url
+    def Errors.url
       lambda do |value|
         ArgumentError.new("url must be a proper url: #{value}")
       end
     end
 
-    def method
+    def Errors.method
       lambda do |value|
         ArgumentError.new("method must be a word: #{value}")
       end
     end
 
-    def alphanum
+    def Errors.alphanum
       lambda do |value|
         ArgumentError.new("This value must be alphanumeric: #{value}")
       end
     end
 
-    def request_method
+    def Errors.request_method
       lambda do |value|
         ApiError.new("Method not a valid HTTP request method: #{value}")
       end
-
     end
   end
 end

@@ -8,29 +8,29 @@ module Ordrin
     private
 
     def build_dict(restaurant_id, tray, tip, delivery_date_time, first_name, last_name, address, credit_card, email, login=nil)
-      data = {'restaurant_id' => normalize(restaurant_id, :number),
+      data = {'restaurant_id' => Normalize.normalize(restaurant_id, :number),
         'tray' => tray.to_s,
-        'tip' => normalize(tip, :money),
-        'delivery_date' => normalize(delivery_date_time, :date)}
+        'tip' => Normalize.normalize(tip, :money),
+        'delivery_date' => Normalize.normalize(delivery_date_time, :date)}
       if data['delivery_date'] != 'ASAP'
-        data['delivery_time'] = normalize(deilvery_date_time, :time)
+        data['delivery_time'] = Normalize.normalize(delivery_date_time, :time)
       end
-      data['first_name'] = normalize(first_name, :name)
-      data['last_name'] = normalize(last_name, :name)
+      data['first_name'] = Normalize.normalize(first_name, :name)
+      data['last_name'] = Normalize.normalize(last_name, :name)
       begin
         data.merge!(address.make_dict)
       rescue NoMethodError=>e
-        data['nick'] = normalize(address, :nick)
+        data['nick'] = Normalize.normalize(address, :nick)
       end
       if login.nil?
-        data['em'] = normalize(email, :email)
+        data['em'] = Normalize.normalize(email, :email)
       end
       begin
         credit_card.make_dict.each_pair do |key, value|
           data["card_#{key}"] = value
         end
       rescue NoMethodError=>e
-        data['card_nick'] = normalize(credit_card, :nick)
+        data['card_nick'] = Normalize.normalize(credit_card, :nick)
       end
       data['type'] = 'res'
       return data
@@ -43,10 +43,10 @@ module Ordrin
       return call_api(:post, ['o', restaurant_id], login, data)
     end
 
-    def order_create_user(restaurant_id, tray, tip, deilvery_date_time, first_name, last_name, address, credit_card, email, password)
+    def order_create_user(restaurant_id, tray, tip, delivery_date_time, first_name, last_name, address, credit_card, email, password)
       data = build_dict(restaurant_id, tray, tip, delivery_date_time, first_name, last_name, address, credit_card, email)
-      data['pw'] = UserLogin.hash_password(password)
-      return call_api(:post, ['o', restaurant_id], data)
+      data['pw'] = Data::UserLogin.hash_password(password)
+      return call_api(:post, ['o', restaurant_id], nil, data)
     end
   end
 end
