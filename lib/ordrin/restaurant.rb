@@ -1,5 +1,5 @@
-require './ordrinapi'
-require './normalize'
+require_relative 'ordrinapi'
+require_relative 'normalize'
 
 module Ordrin
   class RestaurantApi < OrdrinApi

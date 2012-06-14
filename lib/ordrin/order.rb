@@ -1,6 +1,6 @@
-require './ordrinapi'
-require './normalize'
-require './data'
+require_relative 'ordrinapi'
+require_relative 'normalize'
+require_relative 'data'
 
 module Ordrin
   class OrderApi < OrdrinApi

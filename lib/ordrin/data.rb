@@ -1,5 +1,5 @@
-require './digest'
-require './normalize'
+require 'digest'
+require_relative 'normalize'
 module Ordrin
   module Data
     class OrdrinData
@@ -34,7 +34,7 @@ module Ordrin
       def initialize(name, expiry_month, expiry_year, bill_address, number, cvc)
         @expiry_month = normalize(expiry_month, :month)
         @expiry_year = normalize(expiry_year, :year)
-        @number, @cvc, @type = normalize((number, cvc), :credit_card)
+        @number, @cvc, @type = normalize([number, cvc], :credit_card)
         @name = name
         @bill_address = bill_address
       end

@@ -1,4 +1,4 @@
-require './errors'
+require_relative 'errors'
 
 module Ordrin
   module Normalizers
@@ -63,10 +63,11 @@ module Ordrin
         if time.to_s.upcase == 'ASAP'
           'ASAP'
         else
-          beginn
-          time.strftime('%m-%d+%H:%M')
-        rescue NoMethodError
-          raise Errors.time[date_time]
+          begin
+            time.strftime('%m-%d+%H:%M')
+          rescue NoMethodError
+            raise Errors.time[date_time]
+          end
         end
       end
 
@@ -172,8 +173,8 @@ module Ordrin
 
     normalizers = Normalizers.new
 
-    def normalize(value, normalizer):
-        normalizer.send(normalizer, value)
+    def normalize(value, normalizer)
+      normalizer.send(normalizer, value)
     end
   end
 end

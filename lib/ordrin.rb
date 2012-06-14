@@ -1,7 +1,7 @@
-require './ordrin/restaurant'
-require './ordrin/user'
-require './ordrin/order'
-require './ordrin/data'
+require_relative 'ordrin/restaurant'
+require_relative 'ordrin/user'
+require_relative 'ordrin/order'
+require_relative 'ordrin/data'
 
 module Ordrin
   class APIs

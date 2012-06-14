@@ -1,4 +1,4 @@
-require './normalize'
+require_relative 'normalize'
 require 'net/http'
 require 'json'
 require 'digest'
@@ -16,16 +16,17 @@ module Ordrin
     protected
 
     def call_api(method, arguments, login=nil, data=nil)
-      Method = {:get => Net::HTTP::Get,
+      methods = {:get => Net::HTTP::Get,
         :post => Net::HTTP::Post,
-        :put => Net::HTTP:Put,
-        :delete => Net::HTTP::Delete}[method]
+        :put => Net::HTTP::Put,
+        :delete => Net::HTTP::Delete}
+      method = methods[method]
       uri = ('/'+(arguments.collect {|a| URI.encode a})*'/')
       full_url = URI.parse(base_url+uri)
       unless data.nil?
         full_url.encode_www_form(data)
       end
-      req = Method.new(full_url.request_uri)
+      req = method.new(full_url.request_uri)
       req['X-NAAMA-CLIENT-AUTHENTICATION'] = "id=\"#{@base_url}\", version=\"1\"" unless key.empty?
       unless login.nil?
         hash_code = Digest::SHA256.new.hexdigest("#{login.password}#{login.email}#{uri}")
@@ -45,3 +46,4 @@ module Ordrin
       end
     end
   end
+end

@@ -1,6 +1,6 @@
-require './ordrinapi'
-require './normalize'
-require './data'
+require_relative 'ordrinapi'
+require_relative 'normalize'
+require_relative 'data'
 
 module Ordrin
   class UserApi < OrdrinApi
@@ -69,7 +69,7 @@ module Ordrin
     end
 
     def set_password(login, new_password)
-      data = {'email' => login.email
+      data = {'email' => login.email,
         'password' => UserLogin.hash_password(new_password),
         'previous_password' => login.password}
       return self.call_api(:put, ['u', login.email, 'password'], login, data)
