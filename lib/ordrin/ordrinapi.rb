@@ -34,7 +34,10 @@ class OrdrinApi
     res = Net::HTTP.start(full_url.hostname, full_url.port) {|http| http.request(req)}
     result = JSON.parse(res.body)
     if result.has_key?('_error') and result['_error']!=0
-      #raise error
+      if result.has_key?('text')
+        raise ApiError(result['msg'], result['text'])
+      else
+        raise ApiError(result['msg'])
     end
     result
   end
