@@ -1,5 +1,6 @@
 module Ordrin
   module Errors
+    # This is the base class for errors specific to this ordrin package
     class OrdrinError < Exception
       attr_reader :msg
 
@@ -8,6 +9,7 @@ module Ordrin
       end
     end
 
+    # This error encapsulates an API error returned by the server.
     class ApiError < OrdrinError
       attr_reader :text
       def initialize(msg=nil, text=nil)
@@ -20,6 +22,8 @@ module Ordrin
       end
     end
 
+    # This error indicates that the server returned a response that could not be
+    # parsed into JSON
     class ApiInvalidResponseError < OrdrinError
       def to_s
         "ApiInvalidResponseError(msg='#{msg}')"

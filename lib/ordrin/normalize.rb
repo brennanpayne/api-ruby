@@ -17,6 +17,7 @@ module Ordrin
 
       public
       def phone(phone_number)
+        #strips out everything but digits from the phone number
         phone = phone_number.to_s.gsub(/\D/, '')
         if phone.length == 10
           phone[/^(\d{3})(\d{3})(\d{4})$/]
