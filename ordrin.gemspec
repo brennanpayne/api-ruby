@@ -3,7 +3,7 @@ $:.push File.expand_path("./lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name = "ordrin"
-  s.version = '0.1.0'
+  s.version = '0.1.1'
   s.date = '2012-06-14'
   s.platform = Gem::Platform::RUBY
   s.authors = ["Ordr.in"]
@@ -16,7 +16,8 @@ Gem::Specification.new do |s|
   s.files = ['lib/ordrin.rb', 'lib/ordrin/data.rb', 'lib/ordrin/errors.rb',
              'lib/ordrin/normalize.rb', 'lib/ordrin/order.rb',
              'lib/ordrin/ordrinapi.rb', 'lib/ordrin/restaurant.rb',
-             'lib/ordrin/user.rb', 'bin/ordrindemo.rb']
+             'lib/ordrin/user.rb', 'bin/ordrindemo.rb', 'LICENSE.txt',
+             'README.md']
   s.executables = ['ordrindemo.rb']
   s.require_paths = ['lib']
 end
