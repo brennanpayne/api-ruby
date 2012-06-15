@@ -4,10 +4,15 @@ require 'json'
 require 'digest'
 
 module Ordrin
+  # A base object for calling one part of the ordr.in API
   class OrdrinApi
 
     attr_reader :base_url
     
+    # Save the url and key parameters in the object
+    # Arguments:
+    # key -- The developer's API key
+    # base_url -- the url that all API call urls will expand from
     def initialize(key, base_url)
       @key = key
       @base_url = Normalize.normalize(base_url, :url)
@@ -15,6 +20,8 @@ module Ordrin
 
     protected
 
+    # Calls the api at the saved url and returns the return value as Python data structures.
+    # Rethrows any api error as a Ruby exception
     def call_api(method, arguments, login=nil, data=nil)
       methods = {:get => Net::HTTP::Get,
         :post => Net::HTTP::Post,

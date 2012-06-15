@@ -8,6 +8,17 @@ module Ordrin
     
     attr_reader :restaurant, :user, :order
     
+    # Sets up this module to make API calls. The first argument is the developer's
+    # API key. The other three are the URLs corresponding to the three parts of the api.
+    # No API calls will work until this function is called. API objects will only be
+    # instantiated for URLs that are passed in.
+
+    # Arguments:
+    # api_key -- The developer's API key
+    # servers -- How the server URLs should be set. Must be :production, :test, or :custom
+    # restaurant_url -- The base url for the restaurant API. Can only be set if servers==:custom.
+    # user_url -- The base url for the user API. Can only be set if servers==:custom.
+    # order_url -- The base url for the order API. Can only be set if servers==:custom.
     def initialize(api_key, servers, restaurant_url=nil, user_url=nil, order_url=nil)
       @api_key = api_key
       if servers!=:custom
