@@ -75,6 +75,8 @@ module OrdrIn
 
       rest_url = "#{$_url}#{url_params}"
       # puts "REST URL: #{rest_url}"
+      
+      hash_pw = (Digest::SHA2.new << $_password).to_s;
 
       uri = URI.parse(rest_url)
       http = Net::HTTP.new(uri.host, uri.port)
@@ -85,7 +87,7 @@ module OrdrIn
           $_errors << File.basename(__FILE__) + " (" + __LINE__.to_s + ") - user API - valid email and password required to access user API"
         end
 
-        headers['X-NAAMA-AUTHENTICATION'] = 'username="' + $_email + '", response="'  + (Digest::SHA2.new << ($_password+ $_email + url_params)).to_s + '", version="1"';
+        headers['X-NAAMA-AUTHENTICATION'] = 'username="' + $_email + '", response="'  + (Digest::SHA2.new << (hash_pw + $_email + url_params)).to_s + '", version="1"';
       end
 
       unless $_errors.empty?

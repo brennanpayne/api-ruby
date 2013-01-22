@@ -2,10 +2,10 @@
 
 Gem::Specification.new do |s|
   s.name = "Ordrin_API"
-  s.version = "0.9.27"
+  s.version = "0.9.28"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
-  s.authors = ["David Bates - OrdrIn"]
+  s.authors = ["Ordr.in"]
   s.date = "2011-09-13"
   s.description = "OrdrIn Ruby Wrapper for the API"
   s.email = ""

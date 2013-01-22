@@ -32,6 +32,10 @@ def setup_account
   pass = raw_input('Password: ')
   $api.set_curr_acct(user,pass)
 end
+
+def get_key
+  raw_input('Your Secret Key: ')
+end
 ######################################
 
 
@@ -48,30 +52,32 @@ type.strip!
 
 case type.downcase
 when 'r'
-  $api = OrdrIn::API.new('mlJhC8iX4BGWVtn', 'https://r-test.ordr.in')
+  api_key = get_key
+  $api = OrdrIn::API.new(api_key, 'https://r-test.ordr.in')
   setup_account
   action = raw_input('Which action would you like to run? [a] Delivery list [b] Delivery check [c] Delivery fee [d] Restaurant details (enter nothing to exit) ')
   r = OrdrIn::Restaurant.new
 
   case action.downcase
   when 'a'
-    r.delivery_list(dt, place)
+    puts r.delivery_list(dt, place)
   when 'b'
     rid = raw_input("Restaurant ID? ")
-    r.delivery_check(rid, dt, place)
+    puts r.delivery_check(rid, dt, place)
   when 'c'
     rid = raw_input("Restaurant ID? ")
     st = OrdrIn::Moneny.new(raw_input("Subtotal: "))
     tip = OrdrIn::Moneny.new(raw_input("Tip: "))
-    r.delivery_fee(rid, st, tip, dt, place)
+    puts r.delivery_fee(rid, st, tip, dt, place)
   when 'd'
     rid = raw_input("Restaurant ID? ")
-    r.details(rid)
+    puts r.details(rid)
   else
     Process.exit
   end
 when 'u'
-  $api = OrdrIn::API.new('mlJhC8iX4BGWVtn', 'https://u-test.ordr.in')
+  api_key = get_key
+  $api = OrdrIn::API.new(api_key, 'https://u-test.ordr.in')
   u = OrdrIn::User.new
 
   action = raw_input("What kind of action would you like to run? [a] Account [b] Address [c] Card [d] Previous order[s] (enter nothing at any time to exit) ")
@@ -84,14 +90,14 @@ when 'u'
       password = raw_input('Password: ')
       fname = raw_input('First Name: ')
       lname = raw_input('Last Name :')
-      u.make_acct(email, password, fname, lname)
+      puts u.make_acct(email, password, fname, lname)
     when 'b'
       setup_account
-      u.get_acct
+      puts u.get_acct
     when 'c'
       setup_account
       newpass = raw_input('New Password: ')
-      u.update_password(newpass)
+      puts u.update_password(newpass)
     else
       Process.exit
     end ## Subaction
@@ -101,7 +107,7 @@ when 'u'
     case subaction.downcase
     when 'a'
       nick = raw_input('Address nickname (enter none to return list): ')
-      u.get_address(nick)
+      puts u.get_address(nick)
     when 'b'
       nick = raw_input('Address nickname: ')
       street = raw_input('Street: ')
@@ -111,10 +117,10 @@ when 'u'
       zip = raw_input('Zip: ')
       phone = raw_input('Phone: ')
       addr = OrdrIn::Address.new(street, city, zip, street2, state, phone, nick)
-      u.update_addr(addr)
+      puts u.update_addr(addr)
     when 'c'
       nick = raw_input('Address nickname: ')
-      u.delete_address(nick)
+      puts u.delete_address(nick)
     else
       Process.exit
     end ## Subaction
@@ -124,7 +130,7 @@ when 'u'
     case subaction.downcase
     when 'a'
       nick = raw_input('Card Nickname (enter none to return list): ')
-      u.get_card(nick)
+      puts u.get_card(nick)
     when 'b'
       nick = raw_input('Card Nickname: ')
       name = raw_input('Name on card: ')
@@ -139,22 +145,23 @@ when 'u'
       zip = raw_input('Zip: ');
       phone = raw_input('Phone: ')
       addr = OrdrIn::Address.new(street, city, zip, street2, state, phone)
-      u.update_card(nick, name, number, cvc, expM, expY, addr)
+      puts u.update_card(nick, name, number, cvc, expM, expY, addr)
     when 'c'
       nick = raw_input('Card Nickname: ')
-      u.delete_card(nick)
+      puts u.delete_card(nick)
     else
       Process.exit
     end ## Subaction
   when 'd'
     setup_account
     subaction = raw_input('Type in order ID (or nothing to list all): ')
-    u.order_history(subaction)
+    puts u.order_history(subaction)
   else
     Process.exit
   end
 when 'o'
-  $api = OrdrIn::API.new('mlJhC8iX4BGWVtn', 'https://o-test.ordr.in')
+  api_key = get_key
+  $api = OrdrIn::API.new(api_key, 'https://o-test.ordr.in')
   o = OrdrIn::Order.new
   setup_account
 
@@ -167,6 +174,6 @@ when 'o'
   cardnum = raw_input('Card Number: ')
   cvc = raw_input('Card Security Code: ')
   exp = raw_input('Expiration month+year (MM/YY): ')
-  o.submit(rid, tray, OrdrIn::Money.new(tip), dt, email, fname, lname, place, "#{fname} #{lname}", cardnum, cvc, exp, place)
+  puts o.submit(rid, tray, OrdrIn::Money.new(tip), dt, email, fname, lname, place, "#{fname} #{lname}", cardnum, cvc, exp, place)
 
 end # CASE TYPE
