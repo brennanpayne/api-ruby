@@ -3,8 +3,8 @@ $:.push File.expand_path("./lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name = "ordrin"
-  s.version = '0.1.3'
-  s.date = '2013-01-24'
+  s.version = '0.1.4'
+  s.date = '2013-02-13'
   s.platform = Gem::Platform::RUBY
   s.authors = ["Ordr.in"]
   s.email = ['hackfood@ordr.in']

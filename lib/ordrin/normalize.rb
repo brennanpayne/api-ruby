@@ -65,7 +65,7 @@ module Ordrin
           'ASAP'
         else
           begin
-            time.strftime('%m-%d+%H:%M')
+            time.strftime('%H:%M')
           rescue NoMethodError
             raise Errors.time[date_time]
           end
