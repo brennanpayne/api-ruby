@@ -33,7 +33,7 @@ API Initialization
 ------------------
 
 ```python
-api = Ordrin::APIs(developer_key, servers, restaurant_url, user_url, order_url)
+api = Ordrin::APIs.new(developer_key, servers, restaurant_url, user_url, order_url)
 ```
 
 Restaurant API Functions
