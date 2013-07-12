@@ -31,7 +31,6 @@ module Ordrin
         "PUT" => Net::HTTP::Put,
         "DELETE" => Net::HTTP::Delete}
       method = methods[method]
-      uri = ('/'+(arguments.collect {|a| URI.encode a.to_s})*'/')
       full_url = URI.parse(base_url+uri)
       req = method.new(full_url.request_uri)
       if not data.nil?
@@ -67,7 +66,7 @@ module Ordrin
     end
 
     def call_endpoint(endpoint_group, endpoint_name, url_params, kwargs)
-      endpoint_data = @ENDPOINT_INFO[endpoint_group][endpoint_name]
+      endpoint_data = @ENDPOINT_INFO[endpoint_group.to_s][endpoint_name]
       value_mutators = {};
       endpoint_data["properties"].each do |name, info|
         if info.has_key?("mutator")
@@ -95,7 +94,7 @@ module Ordrin
       JSON::Validator.validate!(endpoint_data, kwargs)
       arg_dict = {}
       url_params.each do |name|
-        arg_dict[name] = URI.encode(value_mutators[name].call(kwargs[name]))
+        arg_dict[name.intern] = URI.encode(value_mutators[name].call(kwargs[name]))
       end
 
       data = {}
@@ -119,7 +118,7 @@ module Ordrin
         end
         login = {email: kwargs["email"], password: Mutate.sha256(kwargs["curent_password"])}
       end
-      call_api(urls[endpoint_group], endpoint_data["meta"]["method"], uri, data, login)
+      call_api(@urls[endpoint_group], endpoint_data["meta"]["method"], uri, data, login)
     end
   end
 end

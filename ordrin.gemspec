@@ -11,7 +11,8 @@ Gem::Specification.new do |s|
   s.homepage = 'https://github.com/ordrin/api-ruby'
   s.summary = "Ordrin API wrapper"
   s.description = "Ordrin API wrapper. Used to simplify making calls to the Ordr.in API in Ruby"
-  s.files = ['ordrin/api.rb', 'ordrin/api_helper.rb', 'ordrin/mutate.rb', 'ordrin/schema.json']
+  s.files = ['ordrin/api.rb', 'ordrin/api_helper.rb', 'ordrin/mutate.rb',
+             'ordrin/schema.json', "ordrin/cacert.pem"]
   s.executables = ['ordrindemo.rb']
   s.require_paths = ['ordrin']
 end
