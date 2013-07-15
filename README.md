@@ -5,34 +5,34 @@ See full API documentation at http://hackfood.ordr.in
 
 ## Table of Contents
 
- - (Installation)[#installation]
- - (Usage)[#usage]
-   - (Initialization)[#initialization]
+ - [Installation](#installation)
+ - [Usage](#usage)
+   - [Initialization](#initialization)
    
-   - (Order Endpoints)[#order]
-     - (Guest Order)[#guest-order]
-     - (User Order)[#user-order]
+   - [Order Endpoints](#order)
+     - [Guest Order](#guest-order)
+     - [User Order](#user-order)
      
-   - (Restaurant Endpoints)[#restaurant]
-     - (Delivery Check)[#delivery-check]
-     - (Delivery List)[#delivery-list]
-     - (Fee)[#fee]
-     - (Restaurant Details)[#restaurant-details]
+   - [Restaurant Endpoints](#restaurant)
+     - [Delivery Check](#delivery-check)
+     - [Delivery List](#delivery-list)
+     - [Fee](#fee)
+     - [Restaurant Details](#restaurant-details)
      
-   - (User Endpoints)[#user]
-     - (Change Password)[#change-password]
-     - (Create Account)[#create-account]
-     - (Create Address)[#create-address]
-     - (Create Credit Card)[#create-credit-card]
-     - (Remove address)[#remove-address]
-     - (Remove Credit Card)[#remove-credit-card]
-     - (Get Account Information)[#get-account-information]
-     - (Get All Saved Addresses)[#get-all-saved-addresses]
-     - (Get all saved credit cards)[#get-all-saved-credit-cards]
-     - (Get an Order)[#get-an-order]
-     - (Get Order History)[#get-order-history]
-     - (Get a single saved address)[#get-a-single-saved-address]
-     - (Get a single saved credit card)[#get-a-single-saved-credit-card]
+   - [User Endpoints](#user)
+     - [Change Password](#change-password)
+     - [Create Account](#create-account)
+     - [Create Address](#create-address)
+     - [Create Credit Card](#create-credit-card)
+     - [Remove address](#remove-address)
+     - [Remove Credit Card](#remove-credit-card)
+     - [Get Account Information](#get-account-information)
+     - [Get All Saved Addresses](#get-all-saved-addresses)
+     - [Get all saved credit cards](#get-all-saved-credit-cards)
+     - [Get an Order](#get-an-order)
+     - [Get Order History](#get-order-history)
+     - [Get a single saved address](#get-a-single-saved-address)
+     - [Get a single saved credit card](#get-a-single-saved-credit-card)
      
 
 ## Installation
