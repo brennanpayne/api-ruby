@@ -1,9 +1,39 @@
 # Ordr.in Ruby Library
 
-## About
-
-A ruby library for the ordr.in API
+A ruby library for the ordr.in API.
 See full API documentation at http://hackfood.ordr.in
+
+## Table of Contents
+
+ - (Installation)[#installation]
+ - (Usage)[#usage]
+   - (Initialization)[#initialization]
+   
+   - (Order Endpoints)[#order]
+     - (Guest Order)[#guest-order]
+     - (User Order)[#user-order]
+     
+   - (Restaurant Endpoints)[#restaurant]
+     - (Delivery Check)[#delivery-check]
+     - (Delivery List)[#delivery-list]
+     - (Fee)[#fee]
+     - (Restaurant Details)[#restaurant-details]
+     
+   - (User Endpoints)[#user]
+     - (Change Password)[#change-password]
+     - (Create Account)[#create-account]
+     - (Create Address)[#create-address]
+     - (Create Credit Card)[#create-credit-card]
+     - (Remove address)[#remove-address]
+     - (Remove Credit Card)[#remove-credit-card]
+     - (Get Account Information)[#get-account-information]
+     - (Get All Saved Addresses)[#get-all-saved-addresses]
+     - (Get all saved credit cards)[#get-all-saved-credit-cards]
+     - (Get an Order)[#get-an-order]
+     - (Get Order History)[#get-order-history]
+     - (Get a single saved address)[#get-a-single-saved-address]
+     - (Get a single saved credit card)[#get-a-single-saved-credit-card]
+     
 
 ## Installation
 
@@ -75,7 +105,8 @@ be sent to, and must be set to either `:producion` or `:test`
 - `args["tip"]` : Tip amount in dollars and cents
 - `args["first_name"]` : The customer's first name
 - `args["last_name"]` : The customer's last name
-- `args["email"]` : The user's email address- `args["current_password"]` : The user's current password
+- `args["email"]` : The user's email address
+- `args["current_password"]` : The user's current password
 
 ###### Either
 - `args["phone"]` : The customer's phone number
@@ -174,7 +205,8 @@ be sent to, and must be set to either `:producion` or `:test`
 ##### Arguments
 - `args["email"]` : The user's email address
 - `args["password"]` : The user's new password
-- `args["email"]` : The user's email address- `args["current_password"]` : The user's current password
+- `args["email"]` : The user's email address
+- `args["current_password"]` : The user's current password
 
 #### Create Account
 
@@ -200,7 +232,8 @@ be sent to, and must be set to either `:producion` or `:test`
 - `args["addr2"]` : The second part of the street address, if needed
 - `args["city"]` : The city part of the address
 - `args["state"]` : The state part of the address
-- `args["email"]` : The user's email address- `args["current_password"]` : The user's current password
+- `args["email"]` : The user's email address
+- `args["current_password"]` : The user's current password
 
 #### Create Credit Card
 
@@ -218,7 +251,8 @@ be sent to, and must be set to either `:producion` or `:test`
 - `args["bill_state"]` : The credit card's billing state
 - `args["bill_zip"]` : The credit card's billing zip code
 - `args["bill_phone"]` : The credit card's billing phone number
-- `args["email"]` : The user's email address- `args["current_password"]` : The user's current password
+- `args["email"]` : The user's email address
+- `args["current_password"]` : The user's current password
 
 #### Remove address
 
@@ -227,7 +261,8 @@ be sent to, and must be set to either `:producion` or `:test`
 ##### Arguments
 - `args["email"]` : The user's email address
 - `args["nick"]` : The nickname of this address
-- `args["email"]` : The user's email address- `args["current_password"]` : The user's current password
+- `args["email"]` : The user's email address
+- `args["current_password"]` : The user's current password
 
 #### Remove Credit Card
 
@@ -236,7 +271,8 @@ be sent to, and must be set to either `:producion` or `:test`
 ##### Arguments
 - `args["email"]` : The user's email address
 - `args["nick"]` : The nickname of this address
-- `args["email"]` : The user's email address- `args["current_password"]` : The user's current password
+- `args["email"]` : The user's email address
+- `args["current_password"]` : The user's current password
 
 #### Get Account Information
 
@@ -244,7 +280,8 @@ be sent to, and must be set to either `:producion` or `:test`
 
 ##### Arguments
 - `args["email"]` : The user's email address
-- `args["email"]` : The user's email address- `args["current_password"]` : The user's current password
+- `args["email"]` : The user's email address
+- `args["current_password"]` : The user's current password
 
 #### Get All Saved Addresses
 
@@ -252,7 +289,8 @@ be sent to, and must be set to either `:producion` or `:test`
 
 ##### Arguments
 - `args["email"]` : The user's email address
-- `args["email"]` : The user's email address- `args["current_password"]` : The user's current password
+- `args["email"]` : The user's email address
+- `args["current_password"]` : The user's current password
 
 #### Get all saved credit cards
 
@@ -260,7 +298,8 @@ be sent to, and must be set to either `:producion` or `:test`
 
 ##### Arguments
 - `args["email"]` : The user's email address
-- `args["email"]` : The user's email address- `args["current_password"]` : The user's current password
+- `args["email"]` : The user's email address
+- `args["current_password"]` : The user's current password
 
 #### Get an Order
 
@@ -269,7 +308,8 @@ be sent to, and must be set to either `:producion` or `:test`
 ##### Arguments
 - `args["email"]` : The user's email address
 - `args["oid"]` : Ordr.in's unique order id number.
-- `args["email"]` : The user's email address- `args["current_password"]` : The user's current password
+- `args["email"]` : The user's email address
+- `args["current_password"]` : The user's current password
 
 #### Get Order History
 
@@ -277,7 +317,8 @@ be sent to, and must be set to either `:producion` or `:test`
 
 ##### Arguments
 - `args["email"]` : The user's email address
-- `args["email"]` : The user's email address- `args["current_password"]` : The user's current password
+- `args["email"]` : The user's email address
+- `args["current_password"]` : The user's current password
 
 #### Get a single saved address
 
@@ -286,7 +327,8 @@ be sent to, and must be set to either `:producion` or `:test`
 ##### Arguments
 - `args["email"]` : The user's email address
 - `args["nick"]` : The nickname of this address
-- `args["email"]` : The user's email address- `args["current_password"]` : The user's current password
+- `args["email"]` : The user's email address
+- `args["current_password"]` : The user's current password
 
 #### Get a single saved credit card
 
@@ -295,5 +337,6 @@ be sent to, and must be set to either `:producion` or `:test`
 ##### Arguments
 - `args["email"]` : The user's email address
 - `args["nick"]` : The nickname of this address
-- `args["email"]` : The user's email address- `args["current_password"]` : The user's current password
+- `args["email"]` : The user's email address
+- `args["current_password"]` : The user's current password
 
