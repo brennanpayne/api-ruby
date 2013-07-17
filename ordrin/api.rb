@@ -14,6 +14,7 @@ module Ordrin
       Arguments:
     rid--Ordr.in's unique restaurant identifier for the restaurant.
     em--The customer's email address
+    tray--Represents a tray of menu items in the format '[menu item id]/[qty],[option id],...,[option id]'
     tip--Tip amount in dollars and cents
     first_name--The customer's first name
     last_name--The customer's last name
@@ -32,7 +33,6 @@ module Ordrin
     card_bill_phone--The credit card's billing phone number
 
     Keyword Arguments:
-    tray--Represents a tray of menu items in the format '[menu item id]/[qty],[option id],...,[option id]'
     addr2--The second part of the street address, if needed
     card_name--Full name as it appears on the credit card
     card_bill_addr2--The second part of the credit card's biling street address.
@@ -51,6 +51,7 @@ module Ordrin
 =begin
       Arguments:
     rid--Ordr.in's unique restaurant identifier for the restaurant.
+    tray--Represents a tray of menu items in the format '[menu item id]/[qty],[option id],...,[option id]'
     tip--Tip amount in dollars and cents
     first_name--The customer's first name
     last_name--The customer's last name
@@ -58,7 +59,6 @@ module Ordrin
     current_password -- The user's current password
 
     Keyword Arguments:
-    tray--Represents a tray of menu items in the format '[menu item id]/[qty],[option id],...,[option id]'
 
 
     Either
