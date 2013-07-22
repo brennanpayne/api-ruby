@@ -9,30 +9,30 @@ See full API documentation at http://hackfood.ordr.in
  - [Usage](#usage)
    - [Initialization](#initialization)
    
-   - [Order Endpoints](#order)
-     - [Guest Order](#guest-order) (`order_guest`)
-     - [User Order](#user-order) (`order_user`)
+   - [Order Endpoints](#order-endpoints-api-reference)
+     - [Guest Order](#guest-order-api-reference) (`order_guest`)
+     - [User Order](#user-order-api-reference) (`order_user`)
      
-   - [Restaurant Endpoints](#restaurant)
-     - [Delivery Check](#delivery-check) (`delivery_check`)
-     - [Delivery List](#delivery-list) (`delivery_list`)
-     - [Fee](#fee) (`fee`)
-     - [Restaurant Details](#restaurant-details) (`restaurant_details`)
+   - [Restaurant Endpoints](#restaurant-endpoints-api-reference)
+     - [Delivery Check](#delivery-check-api-reference) (`delivery_check`)
+     - [Delivery List](#delivery-list-api-reference) (`delivery_list`)
+     - [Fee](#fee-api-reference) (`fee`)
+     - [Restaurant Details](#restaurant-details-api-reference) (`restaurant_details`)
      
-   - [User Endpoints](#user)
-     - [Change Password](#change-password) (`change_password`)
-     - [Create Account](#create-account) (`create_account`)
-     - [Create Address](#create-address) (`create_addr`)
-     - [Create Credit Card](#create-credit-card) (`create_cc`)
-     - [Remove address](#remove-address) (`delete_addr`)
-     - [Remove Credit Card](#remove-credit-card) (`delete_cc`)
-     - [Get Account Information](#get-account-information) (`get_account_info`)
-     - [Get All Saved Addresses](#get-all-saved-addresses) (`get_all_saved_addrs`)
-     - [Get all saved credit cards](#get-all-saved-credit-cards) (`get_all_saved_ccs`)
-     - [Get an Order](#get-an-order) (`get_order`)
-     - [Get Order History](#get-order-history) (`get_order_history`)
-     - [Get a single saved address](#get-a-single-saved-address) (`get_saved_addr`)
-     - [Get a single saved credit card](#get-a-single-saved-credit-card) (`get_saved_cc`)
+   - [User Endpoints](#user-endpoints-api-reference)
+     - [Change Password](#change-password-api-reference) (`change_password`)
+     - [Create Account](#create-account-api-reference) (`create_account`)
+     - [Create Address](#create-address-api-reference) (`create_addr`)
+     - [Create Credit Card](#create-credit-card-api-reference) (`create_cc`)
+     - [Remove address](#remove-address-api-reference) (`delete_addr`)
+     - [Remove Credit Card](#remove-credit-card-api-reference) (`delete_cc`)
+     - [Get Account Information](#get-account-information-api-reference) (`get_account_info`)
+     - [Get All Saved Addresses](#get-all-saved-addresses-api-reference) (`get_all_saved_addrs`)
+     - [Get all saved credit cards](#get-all-saved-credit-cards-api-reference) (`get_all_saved_ccs`)
+     - [Get an Order](#get-an-order-api-reference) (`get_order`)
+     - [Get Order History](#get-order-history-api-reference) (`get_order_history`)
+     - [Get a single saved address](#get-a-single-saved-address-api-reference) (`get_saved_addr`)
+     - [Get a single saved credit card](#get-a-single-saved-credit-card-api-reference) (`get_saved_cc`)
      
 
 ## Installation
@@ -62,36 +62,36 @@ be sent to, and must be set to either `:producion` or `:test`
     ordrin_api.order_guest(args)
 
 ##### Arguments
-- `args["rid"]` : Ordr.in's unique restaurant identifier for the restaurant.
+- `args["rid"]` : Ordr.in's unique restaurant identifier for the restaurant. (A number)
 - `args["em"]` : The customer's email address
 - `args["tray"]` : Represents a tray of menu items in the format '[menu item id]/[qty],[option id],...,[option id]'
 - `args["tip"]` : Tip amount in dollars and cents
 - `args["first_name"]` : The customer's first name
 - `args["last_name"]` : The customer's last name
 - `args["phone"]` : The customer's phone number
-- `args["zip"]` : The zip code part of the address
+- `args["zip"]` : The zip code part of the address (5 digits)
 - `args["addr"]` : The street address
 - `args["addr2"]` : The second part of the street address, if needed
 - `args["city"]` : The city part of the address
-- `args["state"]` : The state part of the address
+- `args["state"]` : The state part of the address (Two letters)
 - `args["card_name"]` : Full name as it appears on the credit card
-- `args["card_number"]` : Credit card number
-- `args["card_cvc"]` : 3 or 4 digit security code
-- `args["card_expiry"]` : The credit card expiration date.
+- `args["card_number"]` : Credit card number (16 digits)
+- `args["card_cvc"]` : 3 or 4 digit security code (3 or 4 digits)
+- `args["card_expiry"]` : The credit card expiration date. (mm/yyyy)
 - `args["card_bill_addr"]` : The credit card's billing street address
 - `args["card_bill_addr2"]` : The second part of the credit card's biling street address.
 - `args["card_bill_city"]` : The credit card's billing city
-- `args["card_bill_state"]` : The credit card's billing state
-- `args["card_bill_zip"]` : The credit card's billing zip code
+- `args["card_bill_state"]` : The credit card's billing state (2 letters)
+- `args["card_bill_zip"]` : The credit card's billing zip code (5 digits)
 - `args["card_bill_phone"]` : The credit card's billing phone number
 
 
 ###### Either
-- `args["delivery_date"]` : Delivery date
-- `args["delivery_time"]` : Delivery time
+- `args["delivery_date"]` : Delivery date (mm-dd)
+- `args["delivery_time"]` : Delivery time (HH:MM)
 
 ###### Or
-- `args["delivery_date"]` : Delivery date
+- `args["delivery_date"]` : Delivery date (ASAP)
 
 
 
@@ -100,7 +100,7 @@ be sent to, and must be set to either `:producion` or `:test`
     ordrin_api.order_user(args)
 
 ##### Arguments
-- `args["rid"]` : Ordr.in's unique restaurant identifier for the restaurant.
+- `args["rid"]` : Ordr.in's unique restaurant identifier for the restaurant. (A number)
 - `args["tray"]` : Represents a tray of menu items in the format '[menu item id]/[qty],[option id],...,[option id]'
 - `args["tip"]` : Tip amount in dollars and cents
 - `args["first_name"]` : The customer's first name
@@ -110,11 +110,11 @@ be sent to, and must be set to either `:producion` or `:test`
 
 ###### Either
 - `args["phone"]` : The customer's phone number
-- `args["zip"]` : The zip code part of the address
+- `args["zip"]` : The zip code part of the address (5 digits)
 - `args["addr"]` : The street address
 - `args["addr2"]` : The second part of the street address, if needed
 - `args["city"]` : The city part of the address
-- `args["state"]` : The state part of the address
+- `args["state"]` : The state part of the address (Two letters)
 
 ###### Or
 - `args["nick"]` : The delivery location nickname. (From the user's addresses)
@@ -123,14 +123,14 @@ be sent to, and must be set to either `:producion` or `:test`
 
 ###### Either
 - `args["card_name"]` : Full name as it appears on the credit card
-- `args["card_number"]` : Credit card number
-- `args["card_cvc"]` : 3 or 4 digit security code
-- `args["card_expiry"]` : The credit card expiration date.
+- `args["card_number"]` : Credit card number (16 digits)
+- `args["card_cvc"]` : 3 or 4 digit security code (3 or 4 digits)
+- `args["card_expiry"]` : The credit card expiration date. (mm/yyyy)
 - `args["card_bill_addr"]` : The credit card's billing street address
 - `args["card_bill_addr2"]` : The second part of the credit card's biling street address.
 - `args["card_bill_city"]` : The credit card's billing city
-- `args["card_bill_state"]` : The credit card's billing state
-- `args["card_bill_zip"]` : The credit card's billing zip code
+- `args["card_bill_state"]` : The credit card's billing state (2 letters)
+- `args["card_bill_zip"]` : The credit card's billing zip code (5 digits)
 - `args["card_bill_phone"]` : The credit card's billing phone number
 
 ###### Or
@@ -139,11 +139,11 @@ be sent to, and must be set to either `:producion` or `:test`
 
 
 ###### Either
-- `args["delivery_date"]` : Delivery date
-- `args["delivery_time"]` : Delivery time
+- `args["delivery_date"]` : Delivery date (mm-dd)
+- `args["delivery_time"]` : Delivery time (HH:MM)
 
 ###### Or
-- `args["delivery_date"]` : Delivery date
+- `args["delivery_date"]` : Delivery date (ASAP)
 
 
 
@@ -155,11 +155,11 @@ be sent to, and must be set to either `:producion` or `:test`
     ordrin_api.delivery_check(args)
 
 ##### Arguments
-- `args["datetime"]` : Delivery date and time
-- `args["rid"]` : Ordr.in's unique restaurant identifier for the restaurant.
+- `args["datetime"]` : Delivery date and time (ASAP or mm-dd+HH:MM)
+- `args["rid"]` : Ordr.in's unique restaurant identifier for the restaurant. (A number)
 - `args["addr"]` : Delivery location street address
 - `args["city"]` : Delivery location city
-- `args["zip"]` : The zip code part of the address
+- `args["zip"]` : The zip code part of the address (5 digits)
 
 
 #### Delivery List ([API Reference](http://hackfood.ordr.in/docs/restaurant#delivery_list))
@@ -167,10 +167,10 @@ be sent to, and must be set to either `:producion` or `:test`
     ordrin_api.delivery_list(args)
 
 ##### Arguments
-- `args["datetime"]` : Delivery date and time
+- `args["datetime"]` : Delivery date and time (ASAP or mm-dd+HH:MM)
 - `args["addr"]` : Delivery location street address
 - `args["city"]` : Delivery location city
-- `args["zip"]` : The zip code part of the address
+- `args["zip"]` : The zip code part of the address (5 digits)
 
 
 #### Fee ([API Reference](http://hackfood.ordr.in/docs/restaurant#fee))
@@ -178,13 +178,13 @@ be sent to, and must be set to either `:producion` or `:test`
     ordrin_api.fee(args)
 
 ##### Arguments
-- `args["datetime"]` : Delivery date and time
-- `args["rid"]` : Ordr.in's unique restaurant identifier for the restaurant.
+- `args["datetime"]` : Delivery date and time (ASAP or mm-dd+HH:MM)
+- `args["rid"]` : Ordr.in's unique restaurant identifier for the restaurant. (A number)
 - `args["subtotal"]` : The cost of all items in the tray in dollars and cents.
 - `args["tip"]` : The tip in dollars and cents.
 - `args["addr"]` : Delivery location street address
 - `args["city"]` : Delivery location city
-- `args["zip"]` : The zip code part of the address
+- `args["zip"]` : The zip code part of the address (5 digits)
 
 
 #### Restaurant Details ([API Reference](http://hackfood.ordr.in/docs/restaurant#restaurant_details))
@@ -192,7 +192,7 @@ be sent to, and must be set to either `:producion` or `:test`
     ordrin_api.restaurant_details(args)
 
 ##### Arguments
-- `args["rid"]` : Ordr.in's unique restaurant identifier for the restaurant.
+- `args["rid"]` : Ordr.in's unique restaurant identifier for the restaurant. (A number)
 
 
 
@@ -204,7 +204,7 @@ be sent to, and must be set to either `:producion` or `:test`
 
 ##### Arguments
 - `args["email"]` : The user's email address
-- `args["password"]` : The user's new password
+- `args["password"]` : The user's new password (SHA256 hex encoded)
 - `args["current_password"]` : The user's current password
 
 #### Create Account ([API Reference](http://hackfood.ordr.in/docs/user#create_account))
@@ -226,11 +226,11 @@ be sent to, and must be set to either `:producion` or `:test`
 - `args["email"]` : The user's email address
 - `args["nick"]` : The nickname of this address
 - `args["phone"]` : The customer's phone number
-- `args["zip"]` : The zip code part of the address
+- `args["zip"]` : The zip code part of the address (5 digits)
 - `args["addr"]` : The street address
 - `args["addr2"]` : The second part of the street address, if needed
 - `args["city"]` : The city part of the address
-- `args["state"]` : The state part of the address
+- `args["state"]` : The state part of the address (Two letters)
 - `args["current_password"]` : The user's current password
 
 #### Create Credit Card ([API Reference](http://hackfood.ordr.in/docs/user#create_cc))
@@ -240,14 +240,14 @@ be sent to, and must be set to either `:producion` or `:test`
 ##### Arguments
 - `args["email"]` : The user's email address
 - `args["nick"]` : The nickname of this address
-- `args["card_number"]` : Credit card number
-- `args["card_cvc"]` : 3 or 4 digit security code
-- `args["card_expiry"]` : The credit card expiration date.
+- `args["card_number"]` : Credit card number (16 digits)
+- `args["card_cvc"]` : 3 or 4 digit security code (3 or 4 digits)
+- `args["card_expiry"]` : The credit card expiration date. (Two digits/Four digits)
 - `args["bill_addr"]` : The credit card's billing street address
 - `args["bill_addr2"]` : The second part of the credit card's biling street address.
 - `args["bill_city"]` : The credit card's billing city
-- `args["bill_state"]` : The credit card's billing state
-- `args["bill_zip"]` : The credit card's billing zip code
+- `args["bill_state"]` : The credit card's billing state (2 letters)
+- `args["bill_zip"]` : The credit card's billing zip code (5 digits)
 - `args["bill_phone"]` : The credit card's billing phone number
 - `args["current_password"]` : The user's current password
 
@@ -299,7 +299,7 @@ be sent to, and must be set to either `:producion` or `:test`
 
 ##### Arguments
 - `args["email"]` : The user's email address
-- `args["oid"]` : Ordr.in's unique order id number.
+- `args["oid"]` : Ordr.in's unique order id number. (A number)
 - `args["current_password"]` : The user's current password
 
 #### Get Order History ([API Reference](http://hackfood.ordr.in/docs/user#get_order_history))

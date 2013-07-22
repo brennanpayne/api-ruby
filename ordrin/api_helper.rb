@@ -70,7 +70,7 @@ module Ordrin
       value_mutators = {};
       endpoint_data["properties"].each do |name, info|
         if info.has_key?("mutator")
-          value_mutators[name] = Mutate.method(name.intern)
+          value_mutators[name] = Mutate.method(info["mutator"].intern)
         else
           value_mutators[name] = Mutate.method(:identity)
         end
@@ -80,7 +80,7 @@ module Ordrin
           subschema["oneOf"].each do |option|
             option["properties"].each do |name, info|
               if info.has_key?("mutator")
-                value_mutators[name] = Mutate.method(name.intern)
+                value_mutators[name] = Mutate.method(info["mutator"].intern)
               else
                 value_mutators[name] = Mutate.method(:identity)
               end
