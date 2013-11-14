@@ -55,9 +55,9 @@ module Ordrin
       if result.is_a? Hash
         if result.has_key?('_error') and result['_error']!=0
           if result.has_key?('text')
-            raise Errors::ApiError.new(result['msg'], result['text'])
+            raise result['msg']
           else
-            raise Errors::ApiError.new(result['msg'])
+            raise ({msg: result["msg"], text: result["text"]})
           end
           result
         end
@@ -116,7 +116,7 @@ module Ordrin
         if not (kwargs.has_key?("email") and kwargs.has_key?("current_password"))
           raise ArgumentError.new("Authenticated request requires arguments 'email' and 'current_password'")
         end
-        login = {email: kwargs["email"], password: Mutate.sha256(kwargs["curent_password"])}
+        login = {email: kwargs["email"], password: Mutate.sha256(kwargs["current_password"])}
       end
       call_api(@urls[endpoint_group], endpoint_data["meta"]["method"], uri, data, login)
     end
