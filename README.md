@@ -51,7 +51,7 @@ ordrin_api = Ordrin::APIs.new(api_key, servers)
 ```
 
 In the initializer, the second argument sets the servers that API requests will
-be sent to, and must be set to either `:producion` or `:test`
+be sent to, and must be set to either `:production` or `:test`
 (defaults to `:test`).
 
 
